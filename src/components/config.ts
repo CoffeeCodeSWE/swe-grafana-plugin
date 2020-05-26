@@ -1,18 +1,17 @@
 import { PluginMeta } from '@grafana/data';
 
 export class ExampleConfigCtrl {
-  static templateUrl = 'legacy/config.html';
-
+  static templateUrl: string;
+  enabled: boolean;
   appEditCtrl: any;
-  appModel?: PluginMeta;
+  appModel: any;
 
   /** @ngInject */
   constructor($scope: any, $injector: any) {
     this.appEditCtrl.setPostUpdateHook(this.postUpdate.bind(this));
-
-    // Make sure it has a JSON Data spot
-    if (!this.appModel) {
-      this.appModel = {} as PluginMeta;
+    this.enabled = false;
+    if (!this.appModel.jsonData) {
+      this.appModel.jsonData = {};
     }
 
     // Required until we get the types sorted on appModel :(
@@ -21,7 +20,7 @@ export class ExampleConfigCtrl {
       appModel.jsonData = {};
     }
 
-    console.log('ExampleConfigCtrl', this);
+    console.log(this);
   }
 
   postUpdate() {
@@ -30,7 +29,7 @@ export class ExampleConfigCtrl {
       return;
     }
 
-    // TODO, can do stuff after update
+    this.enabled = true;
     console.log('Post Update:', this);
   }
 }
