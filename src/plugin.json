@@ -1,16 +1,17 @@
 {
   "type": "app",
-  "name": "Simple App",
-  "id": "yourorg-simple-app",
+  "name": "Predire in Grafana",
+  "id": "coffeecode-predire-in-grafana",
 
   "info": {
+    "description" : "Plug-in di predizione del gruppo CoffeeCode",
     "author": {
-      "name": "Grafana Project",
-      "url": "https://grafana.com"
+      "name": "CoffeeCode",
+      "url": "https://coffeecode.eu"
     },
     "logos": {
-      "small": "img/logo.png",
-      "large": "img/logo.png"
+      "small": "img/logo_transparent.png",
+      "large": "img/logo_transparent.png"
     },
     "version": "%VERSION%",
     "updated": "%TODAY%"
@@ -18,48 +19,15 @@
 
   "includes": [
     {
-      "type": "page",
-      "name": "Root Page (react)",
-      "path": "/a/yourorg-simple-app",
-      "role": "Viewer",
-      "addToNav": true,
-      "defaultNav": true
-    },
-    {
-      "type": "page",
-      "name": "Root Page (tab B)",
-      "path": "/a/yourorg-simple-app/?tab=B",
-      "role": "Viewer",
-      "addToNav": true
-    },
-    {
-      "type": "page",
-      "name": "React Config",
-      "path": "/plugins/yourorg-simple-app/?page=page2",
-      "role": "Admin",
-      "addToNav": true
-    },
-    {
       "type": "dashboard",
-      "name": "Streaming Example",
-      "path": "dashboards/streaming.json"
-    },
-    {
-      "type": "dashboard",
-      "name": "Lots of Stats",
-      "path": "dashboards/stats.json"
-    },
-    {
-      "type": "page",
-      "name": "Angular Page",
-      "component": "AngularExamplePageCtrl",
-      "role": "Viewer",
-      "addToNav": true
+      "name": "Dashboard Example - CoffeeCode",
+      "path": "dashboards/dashboard-example.json",
+      "addToNav" : true
     }
   ],
 
   "dependencies": {
-    "grafanaVersion": "6.6.x",
+    "grafanaVersion": "6.5.x",
     "plugins": []
   }
 }
