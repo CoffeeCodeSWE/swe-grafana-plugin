@@ -23,6 +23,11 @@
       "name": "Dashboard Example - CoffeeCode",
       "path": "./dashboards/dashboard-example.json",
       "addToNav" : true
+    },
+    {
+      "type": "coffee-code-prediction-panel",
+      "name": "Coffee Code panel"
+
     }
   ],
 
