@@ -11,8 +11,8 @@
   "author": "Coffee Code",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@grafana/data": "^6.7.1",
-    "@grafana/toolkit": "^6.7.1",
+    "@grafana/data": "next",
+    "@grafana/toolkit": "next",
     "@grafana/ui": "next",
     "cz-conventional-changelog": "^3.2.0"
   },
