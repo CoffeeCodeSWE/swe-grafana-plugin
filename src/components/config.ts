@@ -1,6 +1,4 @@
-//import { PluginMeta } from '@grafana/data';
-
-export class ExampleConfigCtrl {
+export class MainConfig {
   static templateUrl: string;
   enabled: boolean;
   appEditCtrl: any;
@@ -33,3 +31,5 @@ export class ExampleConfigCtrl {
     console.log('Post Update:', this);
   }
 }
+
+MainConfig.templateUrl = 'components/config.html';
