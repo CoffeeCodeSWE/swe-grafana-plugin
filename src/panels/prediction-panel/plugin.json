@@ -10,8 +10,8 @@
     },
     "keywords": [],
     "logos": {
-      "small": "./img/logo.png",
-      "large": "./img/logo.png"
+      "small": "img/logo.png",
+      "large": "img/logo.png"
     },
     "screenshots": [],
     "version": "%VERSION%",
