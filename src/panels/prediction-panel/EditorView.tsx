@@ -1,42 +1,54 @@
 import React, { PureComponent } from 'react';
 import { PanelEditorProps } from '@grafana/data';
 //import { Props } from './props';
-//import { Predictor } from 'types/types';
 import './style/panel.css';
-import { Predictor } from 'types/types';
+import { Predictor } from './model/Predictor';
 
 //import { PanelOptionsGrid, PanelOptionsGroup } from '@grafana/ui';
 
 export class EditorView extends PureComponent<PanelEditorProps> {
-  private import(target: HTMLInputElement) {
+  getUploadedFile = (e: { target: { files: any } }) => {
     const reader = new FileReader();
-    if (!target.files) {
+    let files = e.target.files,
+      message: string;
+    if (!files) {
       throw new Error('Seleziona un file');
     }
-    reader.readAsText(target.files[0]);
+    reader.readAsText(files[0]);
     reader.onload = event => {
       try {
         this.props.options.predictor = Predictor.readJson(event.target?.result);
-        alert('File caricato con successo');
+        alert('File selezionato correttamente');
       } catch (e) {
         alert(e);
       }
+      if (message) {
+        this.setState({ ...this.state, message });
+      }
       this.render();
     };
-  }
+  };
 
   render() {
-    const { type } = this.props.options.predictor;
-    
+    this.state = { message: 'Messaggio iniziale' };
+    //const { type } = this.props.options.predictor;
+    const inputStyle = {
+      backgroundColor: '#212124',
+      display: 'block',
+      margin: 'auto',
+      height: 'max-content',
+      paddingTop: '30px',
+    };
     return (
       <div className="panel">
         <div className="panel-title">Inserimento predittore</div>
         <input
-          className="input gf-input gf-file centered-input"
+          className="input gf-input gf-file"
+          style={inputStyle}
           type="file"
-          name="Import"
-          id="import"
-          onChange={event => this.import(event.target)}
+          name="Input"
+          id="input"
+          onChange={this.getUploadedFile}
         />
       </div>
     );

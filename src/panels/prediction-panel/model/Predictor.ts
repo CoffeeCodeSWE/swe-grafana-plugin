@@ -1,10 +1,5 @@
-export interface ExampleAppSettings {
-  customText?: string;
-  customCheckbox?: boolean;
-}
-
 /*
- * obj: Predictor{type,tuples,coefficients,svmW}
+ * class: Predictor{type,tuples,coefficients,svmW}
  * Description: oggetto predittore
  */
 export class Predictor {
@@ -12,6 +7,29 @@ export class Predictor {
   tuples!: number;
   coefficients!: number[];
   svmW?: number[];
+
+  constructor(type: string, tuples: number, coefficients: number[], svmW: number[]) {
+    this.type = type;
+    this.tuples = tuples;
+    this.coefficients = coefficients;
+    this.svmW = svmW;
+  }
+
+  getType() {
+    return this.type;
+  }
+
+  getTuples() {
+    return this.tuples;
+  }
+
+  getCoefficients() {
+    return this.coefficients;
+  }
+
+  getSvmW() {
+    return this.svmW;
+  }
 
   /*
    * static readJson(string)
@@ -23,10 +41,9 @@ export class Predictor {
       throw new Error('Seleziona prima il file!');
     }
 
-    let pred: Predictor = new Predictor();
     let str: string;
     str = json.toString();
-    pred = JSON.parse(str);
+    let pred: Predictor = JSON.parse(str);
 
     if (
       (pred.type !== 'RL' && pred.type !== 'SVM') ||
