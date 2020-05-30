@@ -4,8 +4,6 @@ import { PanelEditorProps } from '@grafana/data';
 import './style/panel.css';
 import { Predictor } from './model/Predictor';
 
-//import { PanelOptionsGrid, PanelOptionsGroup } from '@grafana/ui';
-
 export class EditorView extends PureComponent<PanelEditorProps> {
   getUploadedFile = (e: { target: { files: any } }) => {
     const reader = new FileReader();
