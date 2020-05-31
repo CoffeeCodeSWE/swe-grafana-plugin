@@ -3,9 +3,9 @@
  * Description: oggetto predittore
  */
 export class Predictor {
-  type!: string;
-  tuples!: number;
-  coefficients!: number[];
+  type: string;
+  tuples: number;
+  coefficients: number[];
   svmW?: number[];
 
   constructor(type: string, tuples: number, coefficients: number[], svmW: number[]) {
@@ -53,6 +53,8 @@ export class Predictor {
     ) {
       throw new Error('File mal formato');
     }
+    console.log('entrato dentro a readJson, l oggetto predictor è questo:');
+    console.log(pred);
     return pred;
   }
 }

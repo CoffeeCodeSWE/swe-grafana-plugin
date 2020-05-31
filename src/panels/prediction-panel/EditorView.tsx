@@ -3,9 +3,9 @@ import { PanelEditorProps } from '@grafana/data';
 //import { Props } from './props';
 import './style/panel.css';
 import { Predictor } from './model/Predictor';
-
 export class EditorView extends PureComponent<PanelEditorProps> {
   getUploadedFile = (e: { target: { files: any } }) => {
+    console.log('chiamato getuploadedfile editorview');
     const reader = new FileReader();
     let files = e.target.files,
       message: string;
@@ -16,6 +16,8 @@ export class EditorView extends PureComponent<PanelEditorProps> {
     reader.onload = event => {
       try {
         this.props.options.predictor = Predictor.readJson(event.target?.result);
+        console.log('questo è quello che ho letto:');
+        console.log(this.props.options.predictor);
         alert('File selezionato correttamente');
       } catch (e) {
         alert(e);
@@ -28,6 +30,7 @@ export class EditorView extends PureComponent<PanelEditorProps> {
   };
 
   render() {
+    console.log('chiamato render() editorview');
     this.state = { message: 'Messaggio iniziale' };
     //const { type } = this.props.options.predictor;
     const inputStyle = {
