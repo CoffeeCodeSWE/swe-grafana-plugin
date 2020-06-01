@@ -7,6 +7,7 @@ export class Predictor {
   tuples: number;
   coefficients: number[];
   svmW?: number[];
+  opt?: any;
 
   constructor(type: string, tuples: number, coefficients: number[], svmW: number[]) {
     this.type = type;

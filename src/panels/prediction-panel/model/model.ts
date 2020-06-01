@@ -1,7 +1,7 @@
 import { GrafanaData } from './Data';
 import { Predictor } from './Predictor';
-//import { PredictionRL } from './predictionAlgs/RL';
-//import { PredictionSVM } from './predictionAlgs/SVM';
+import { PredictionRL } from './predictionAlgs/RL';
+import { PredictionSVM } from './predictionAlgs/SVM';
 
 export class Model {
   private data?: GrafanaData;
@@ -26,9 +26,9 @@ export class Model {
     }
 
     if (this.algorithm === 'RL') {
-      //this.data.outputValues = PredictionRL.predict(this.data, this.predictor);
+      this.data.outputValues = PredictionRL.predict(this.data, this.predictor, this.predictor.opt);
     } else if (this.algorithm === 'SVM') {
-      //this.data.outputValues = PredictionSVM.predict(this.data, this.predictor);
+      this.data.outputValues = PredictionSVM.predict(this.data, this.predictor, this.predictor.opt);
     } else {
       throw new Error('Algoritmo sbagliato!');
     }
