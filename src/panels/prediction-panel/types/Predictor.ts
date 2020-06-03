@@ -1,7 +1,3 @@
-/*
- * class: Predictor{type,tuples,coefficients,svmW}
- * Description: oggetto predittore
- */
 export class Predictor {
   type!: string;
   tuples: number;

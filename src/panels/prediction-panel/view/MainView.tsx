@@ -1,6 +1,6 @@
 import React from 'react';
 import { PureComponent } from 'react';
-import Plot from 'react-plotly.js';
+//import Plot from 'react-plotly.js';
 
 interface Props {
   lv: number;
@@ -27,7 +27,8 @@ export class MainView extends PureComponent<Props> {
     this.addValueX(time);
     this.addValueY(lv);
     console.log('chiamato render di MainView.tsx');
-    return (
+    return <div>Ciao</div>;
+    /*return (
       <div>
         <Plot
           data={[
@@ -47,6 +48,6 @@ export class MainView extends PureComponent<Props> {
           }}
         />
       </div>
-    );
+    );*/
   }
 }

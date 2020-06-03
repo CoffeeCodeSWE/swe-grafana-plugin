@@ -1,7 +1,7 @@
-import { GrafanaData } from './Data';
-import { Predictor } from './Predictor';
-import { PredictionRL } from './predictionAlgs/RL';
-import { PredictionSVM } from './predictionAlgs/SVM';
+import { GrafanaData } from '../types/Data';
+import { Predictor } from '../types/Predictor';
+import { PredictionRL } from './prediction/predictionRL';
+import { PredictionSVM } from './prediction/predictionSVM';
 
 export class Model {
   private data?: GrafanaData;

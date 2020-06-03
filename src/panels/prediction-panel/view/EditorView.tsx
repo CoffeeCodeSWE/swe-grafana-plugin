@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { PanelEditorProps } from '@grafana/data';
-import { Props } from './props';
+import { Props } from '../props';
 import './style/panel.css';
-import { Predictor } from './model/Predictor';
+import { Predictor } from '../types/Predictor';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
   getUploadedFile = (e: { target: { files: any } }) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { PureComponent } from 'react';
-import { GrafanaData } from './model/Data';
+import { GrafanaData } from './types/Data';
 import { Model } from './model/model';
-import { MainView } from './MainView';
+import { MainView } from './view/MainView';
 import { PanelProps } from '@grafana/data';
 import { Props } from './props';
 

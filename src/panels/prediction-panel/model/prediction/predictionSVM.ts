@@ -1,5 +1,5 @@
-import { GrafanaData } from '../Data';
-import { Predictor } from '../Predictor';
+import { GrafanaData } from '../../types/Data';
+import { Predictor } from '../../types/Predictor';
 
 function calc(x: number, y: number, coeff: number[]): number {
   return x * coeff[0] + y * coeff[1] + coeff[2];
