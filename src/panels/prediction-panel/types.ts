@@ -5,3 +5,8 @@ export interface SimpleOptions {
   showSeriesCount: boolean;
   seriesCountSize: SeriesSize;
 }
+
+export interface Options {
+  threshold: number;
+  thresholdColor: any;
+}

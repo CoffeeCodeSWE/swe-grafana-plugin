@@ -21,5 +21,9 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/react-plotly.js": "^2.2.4",
+    "plotly.js": "^1.54.1",
+    "react-plotly.js": "^2.4.0"
+  }
 }

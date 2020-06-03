@@ -19,7 +19,7 @@ export class PredictionRL {
     data.outputValues = [];
 
     data.inputGrafanaValues.forEach(value => {
-      if (data) {
+      if (data && value[base]) {
         data.outputValues?.push([value[2], calc(value[base], coefficients)]);
       }
     });

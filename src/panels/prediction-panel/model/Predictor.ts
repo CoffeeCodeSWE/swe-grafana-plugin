@@ -3,7 +3,7 @@
  * Description: oggetto predittore
  */
 export class Predictor {
-  type: string;
+  type!: string;
   tuples: number;
   coefficients: number[];
   svmW?: number[];

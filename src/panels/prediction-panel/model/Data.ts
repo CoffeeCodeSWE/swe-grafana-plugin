@@ -5,19 +5,21 @@ export class GrafanaData {
   outputValues?: number[][];
 
   //legge i valori in input da grafana
-  static readValues(vectors: DataFrame[]): GrafanaData {
-    if (!vectors) {
+  static readValues(series: DataFrame[]): GrafanaData {
+    console.log('sono entrato in GrafanaData.readValues(), come series ho ricevuto: ');
+    console.log(series);
+    if (!series[0] || !series[1]) {
       throw new Error('È necessario impostare almeno 2 query');
     }
 
-    const time = vectors[0].fields[1].values.toArray();
+    const time = series[0].fields[1].values.toArray();
     const values: number[][] = [];
-    vectors.forEach(it => {
+    series.forEach(it => {
       values.push(it.fields[0].values.toArray());
     });
 
     const temp = [];
-    for (let i of time.keys()) {
+    for (const i of time.keys()) {
       const vec = [];
       values.forEach(val => {
         vec.push(val[i]);
@@ -27,7 +29,9 @@ export class GrafanaData {
     }
 
     const data = new GrafanaData();
-    data.inputGrafanaValues = temp;
+    data.outputValues = temp;
+    console.log('alla fine di readValues ritorno questo: ');
+    console.log(data);
     return data;
   }
 }

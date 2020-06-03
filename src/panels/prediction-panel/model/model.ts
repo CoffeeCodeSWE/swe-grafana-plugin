@@ -8,13 +8,13 @@ export class Model {
   private predictor?: Predictor;
   private algorithm?: string;
 
-  setdata(data: GrafanaData) {
+  setData(data: GrafanaData) {
     this.data = data;
   }
 
   setPredictor(predictor: Predictor) {
     this.predictor = predictor;
-    if (this.algorithm !== 'RL' && this.algorithm !== 'SVM') {
+    if (predictor.type !== 'RL' && predictor.type !== 'SVM') {
       throw new Error('Algoritmo sbagliato!');
     }
     this.algorithm = predictor.type;
@@ -24,9 +24,12 @@ export class Model {
     if (!this.data || !this.predictor) {
       throw new Error('Predittore non trovato');
     }
+    console.log('entrato dentro a predict del model');
 
     if (this.algorithm === 'RL') {
+      console.log('entrato dentro ramo RL di predict del model, aspetta che ti dico i valori di output');
       this.data.outputValues = PredictionRL.predict(this.data, this.predictor, this.predictor.opt);
+      console.log(this.data.outputValues);
     } else if (this.algorithm === 'SVM') {
       this.data.outputValues = PredictionSVM.predict(this.data, this.predictor, this.predictor.opt);
     } else {
