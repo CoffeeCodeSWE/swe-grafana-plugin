@@ -1,15 +1,33 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { PureComponent } from 'react';
 import { PanelEditorProps } from '@grafana/data';
 import { Props } from '../props';
 import './style/panel.css';
 import { Predictor } from '../types/Predictor';
+import '../model/strategies';
+import { configs } from '../model/strategies';
 
+const inputStyle = {
+  backgroundColor: '#212124',
+  display: 'block',
+  margin: 'auto',
+  height: 'max-content',
+  paddingTop: '30px',
+};
+
+const setQueriesStyle = {
+  backgroundColor: '#212124',
+  display: 'block',
+  margin: 'auto',
+  height: '100px',
+  paddingTop: '20px',
+};
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
   getUploadedFile = (e: { target: { files: any } }) => {
     console.log('chiamato getuploadedfile editorview');
     const reader = new FileReader();
     let files = e.target.files;
-    if (!e.target.files) {
+    if (!files) {
       throw new Error('Seleziona un file');
     }
     reader.readAsText(files[0]);
@@ -27,14 +45,20 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
   };
 
   render() {
+    let SetQueries;
+    if (this.props.options.predictor) {
+      const { type } = this.props.options.predictor;
+      if (configs[type]) {
+        SetQueries = configs[type];
+      } else {
+        SetQueries = typeof React.PureComponent;
+      }
+    } else {
+      SetQueries = typeof React.PureComponent;
+    }
+
     console.log('chiamato render() editorview');
-    const inputStyle = {
-      backgroundColor: '#212124',
-      display: 'block',
-      margin: 'auto',
-      height: 'max-content',
-      paddingTop: '30px',
-    };
+
     return (
       <div>
         <div className="panel">
@@ -48,6 +72,7 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
             onChange={this.getUploadedFile}
           />
         </div>
+        <SetQueries style={setQueriesStyle} data={this.props.data} options={this.props.options} />
       </div>
     );
   }

@@ -1,16 +1,9 @@
 export class Predictor {
   type!: string;
-  tuples: number;
-  coefficients: number[];
-  svmW?: number[];
+  tuples!: number;
+  coefficients!: number[];
+  svmW!: number[];
   opt?: any;
-
-  constructor(type: string, tuples: number, coefficients: number[], svmW: number[]) {
-    this.type = type;
-    this.tuples = tuples;
-    this.coefficients = coefficients;
-    this.svmW = svmW;
-  }
 
   getType() {
     return this.type;
@@ -40,7 +33,8 @@ export class Predictor {
 
     let str: string;
     str = json.toString();
-    let pred: Predictor = JSON.parse(str);
+    let pred: Predictor = new Predictor();
+    pred = JSON.parse(str);
 
     if (
       (pred.type !== 'RL' && pred.type !== 'SVM') ||

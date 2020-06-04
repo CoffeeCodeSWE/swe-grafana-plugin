@@ -1,23 +1,28 @@
 import { GrafanaData } from '../types/Data';
 import { Predictor } from '../types/Predictor';
-import { PredictionRL } from './prediction/predictionRL';
-import { PredictionSVM } from './prediction/predictionSVM';
+import { strategies } from './strategies';
+import { Strategy } from '../model/interfaces/strategy';
 
 export class Model {
   private data?: GrafanaData;
   private predictor?: Predictor;
-  private algorithm?: string;
+  //private algorithm?: string;
+  private strategy?: Strategy;
 
   setData(data: GrafanaData) {
     this.data = data;
   }
 
   setPredictor(predictor: Predictor) {
+    console.log('sono entrato in model > setpredictor');
     this.predictor = predictor;
-    if (predictor.type !== 'RL' && predictor.type !== 'SVM') {
+    console.log('e il suo this.predictor è ' + this.predictor);
+    console.log('mentre il predictor che gli arriva è ' + predictor);
+    if (!strategies[predictor.type]) {
       throw new Error('Algoritmo sbagliato!');
     }
-    this.algorithm = predictor.type;
+    this.strategy = strategies[predictor.type];
+    console.log('this.strategy è ' + this.strategy);
   }
 
   predict() {
@@ -26,22 +31,12 @@ export class Model {
     }
     console.log('entrato dentro a predict del model');
 
-    if (this.algorithm === 'RL') {
-      console.log('entrato dentro ramo RL di predict del model, aspetta che ti dico i valori di output');
-      this.data.outputValues = PredictionRL.predict(this.data, this.predictor, this.predictor.opt);
-      console.log(this.data.outputValues);
-    } else if (this.algorithm === 'SVM') {
-      this.data.outputValues = PredictionSVM.predict(this.data, this.predictor, this.predictor.opt);
-    } else {
-      throw new Error('Algoritmo sbagliato!');
-    }
-
+    this.data.outputValues = this.strategy?.predict(this.data, this.predictor, this.predictor.opt);
     //altrimenti mi dà errore salve odio typescript
-    if (this.data.outputValues) {
-      return this.data.outputValues[this.data.outputValues?.length - 1][1];
-    } else {
-      throw new Error('Predizione non effettuata');
+    if (!this.data.outputValues || this.data.outputValues.length < 1) {
+      throw new Error('data non predetto');
     }
+    return this.data.outputValues[this.data.outputValues.length - 1][1];
   }
 
   /*async writeInflux() {

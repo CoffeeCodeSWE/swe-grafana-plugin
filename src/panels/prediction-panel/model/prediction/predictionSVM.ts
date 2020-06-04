@@ -1,11 +1,8 @@
 import { GrafanaData } from '../../types/Data';
 import { Predictor } from '../../types/Predictor';
 
-function calc(x: number, y: number, coeff: number[]): number {
-  return x * coeff[0] + y * coeff[1] + coeff[2];
-}
 export class PredictionSVM {
-  static predict(data: GrafanaData, predictor: Predictor, opts: { toPredict: 0 | 1 }): number[][] {
+  predict(data: GrafanaData, predictor: Predictor, opts: { toPredict: 0 | 1 }) {
     console.log('sto predicendo con SVM');
     if (!opts || !opts.toPredict) {
       opts = { ...opts, toPredict: 0 };
@@ -15,23 +12,25 @@ export class PredictionSVM {
     const x = opts.toPredict;
     const y = 1 - opts.toPredict;
 
+    const f = (x: number, y: number) => {
+      return x * coefficents[0] + y * coefficents[1] + coefficents[2];
+    };
     data.outputValues = [];
+
     data.inputGrafanaValues.forEach(value => {
-      const t = calc(value[x], value[y], coefficents);
-      let classification;
-      if (t > 0) {
-        classification = 1;
-      } else {
-        classification = -1;
+      const val = f(value[x], value[y]);
+      let cls = 0; //classification
+      if (val > 0) {
+        cls = 1;
+      } else if (val < 0) {
+        cls = -1;
       }
 
       if (data && (value[0] || value[1])) {
-        data.outputValues?.push([value[2], classification]);
+        data.outputValues?.push([value[2], cls]);
       }
     });
 
-    console.log('ho predetto con SVM e data.outputValues contiene questi valori');
-    console.log(data.outputValues);
     return data.outputValues;
   }
 }
