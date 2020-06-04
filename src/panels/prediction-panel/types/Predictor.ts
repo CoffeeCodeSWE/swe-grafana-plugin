@@ -5,22 +5,6 @@ export class Predictor {
   svmW!: number[];
   opt?: any;
 
-  getType() {
-    return this.type;
-  }
-
-  getTuples() {
-    return this.tuples;
-  }
-
-  getCoefficients() {
-    return this.coefficients;
-  }
-
-  getSvmW() {
-    return this.svmW;
-  }
-
   /*
    * static readJson(string)
    * @return Predictor
@@ -44,8 +28,8 @@ export class Predictor {
     ) {
       throw new Error('File mal formato');
     }
-    console.log('entrato dentro a readJson, l oggetto predictor è questo:');
-    console.log(pred);
+    //console.log('entrato dentro a readJson, l oggetto predictor è questo:');
+    //console.log(pred);
     return pred;
   }
 }
