@@ -54,15 +54,7 @@ export class MainView extends PureComponent<Props> {
           }}
         />
       </div>*/
-      <div
-        className={cx(
-          styles.wrapper,
-          css`
-            width: 900px;
-            height: 200px;
-          `
-        )}
-      >
+      <div>
         <Plot
           className={cx(styles.plot)}
           data={[
@@ -84,8 +76,7 @@ export class MainView extends PureComponent<Props> {
             },
           ]}
           layout={{
-            width: 900,
-            height: 200,
+            autosize: true,
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
           }}
