@@ -45,6 +45,22 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
   };
 
   render() {
+    if (!this.props.data) {
+      return (
+        <div className="panel">
+          <div className="panel-title">Inserimento predittore</div>
+          <input
+            className="input gf-input gf-file"
+            style={inputStyle}
+            type="file"
+            name="Input"
+            id="input"
+            onChange={this.getUploadedFile}
+          />
+        </div>
+      );
+    }
+
     let SetQueries;
     if (this.props.options.predictor) {
       const { type } = this.props.options.predictor;
