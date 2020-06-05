@@ -29,7 +29,7 @@ export class Model {
     if (!this.data || !this.predictor) {
       throw new Error('Predittore non trovato');
     }
-    console.log('entrato dentro a predict del model');
+    //console.log('entrato dentro a predict del model');
 
     this.data.outputValues = this.strategy?.predict(this.data, this.predictor, this.predictor.opt);
     //altrimenti mi dà errore salve odio typescript

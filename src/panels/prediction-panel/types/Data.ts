@@ -14,11 +14,11 @@ export class GrafanaData {
     }
 
     //invertire time e values
-    const time = series[0].fields[1].values.toArray();
+    const time = series[0].fields[0].values.toArray();
     console.log('time= ' + time);
     const values: number[][] = [];
     series.forEach(it => {
-      values.push(it.fields[0].values.toArray());
+      values.push(it.fields[1].values.toArray());
     });
     console.log('values= ' + values);
     const temp = [];
