@@ -5,6 +5,10 @@ import { PanelEditorProps } from '@grafana/data';
 import '../../view/style/panel.css';
 
 export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
+  bohprova() {
+    alert('proviamo');
+  }
+
   render() {
     //console.log('render() di configRL');
     let { predictor } = this.props.options;
@@ -21,6 +25,11 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
             <select className="input-small gf-form-input" onChange={event => this.showQueryAssociations(event)}>
               {this.queryAssociations()}
             </select>
+          </div>
+          <div>
+            <button type="button" className="btn navbar-button gf-timepicker-nav-btn" onClick={this.bohprova}>
+              Avvia predizione
+            </button>
           </div>
         </div>
       </div>

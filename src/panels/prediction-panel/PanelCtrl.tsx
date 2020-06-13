@@ -39,6 +39,7 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
   }
 
   render() {
+    const { options, data, width, height } = this.props;
     this.update();
     console.log('chiamato render di panelctrl, ho come this.lv e this.time questo: ');
     console.log(this.lv);
@@ -52,6 +53,10 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
           opt={predictor.opt}
           lv={this.lv}
           time={this.time}
+          panelopt={options}
+          paneldata={data}
+          panelwidth={width}
+          panelheight={height}
         />
       </div>
     );

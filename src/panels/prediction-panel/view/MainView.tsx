@@ -3,17 +3,22 @@ import { PureComponent } from 'react';
 import Plot from 'react-plotly.js';
 import { css, cx } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
+import { PanelData } from '@grafana/data/types/panel';
 interface Props {
   type: string;
   coefficents: any[];
   opt: any;
   lv: number;
   time: Date;
+  panelopt: any;
+  paneldata: PanelData;
+  panelwidth: number;
+  panelheight: number;
 }
 
 export class MainView extends PureComponent<Props> {
-  /*valuesX: number[];
-  valuesY: number[];
+  valuesX!: number[];
+  valuesY!: number[];
 
   addValueX(v: Date) {
     console.log('dentro addValueX, v (Date) è: ' + v);
@@ -26,14 +31,14 @@ export class MainView extends PureComponent<Props> {
     console.log('dentro addValueY, v (number) è: ' + v);
     this.valuesY?.push(v);
     console.log('aggiunto un valore all array dei valori (y)');
-  } */
+  }
 
   render() {
     const styles = getStyles();
     const { type, coefficents, opt, lv, time } = this.props;
     console.log(type + coefficents + opt + lv + time);
-    //this.addValueX(time);
-    //this.addValueY(lv);
+    this.addValueX(time);
+    this.addValueY(lv);
     return (
       /*<div>
         <Plot
@@ -54,20 +59,28 @@ export class MainView extends PureComponent<Props> {
           }}
         />
       </div>*/
-      <div>
+      <div
+        className={cx(
+          styles.wrapper,
+          css`
+            width: ${this.props.panelwidth}px;
+            height: ${this.props.panelheight}px;
+          `
+        )}
+      >
         <Plot
           className={cx(styles.plot)}
           data={[
             {
-              x: [4, 6, 8],
-              y: [2, 6, 9],
+              x: [4, 2, 0],
+              y: [4, 2, 0],
               type: 'scatter',
               mode: 'lines',
               marker: { color: 'green' },
             },
             {
-              x: [4, 6, 8],
-              y: [2],
+              x: [4, 2, 0],
+              y: [4],
               type: 'scatter',
               mode: 'lines',
               marker: { color: 'red' },
@@ -76,6 +89,8 @@ export class MainView extends PureComponent<Props> {
             },
           ]}
           layout={{
+            width: this.props.panelwidth,
+            height: this.props.panelheight,
             autosize: true,
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
