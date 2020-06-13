@@ -10,6 +10,8 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
   private model: Model;
   private lv!: number;
   private time!: Date;
+  valuesX: number[] = [];
+  valuesY: number[] = [];
 
   constructor(props: PanelProps) {
     super(props);
@@ -32,10 +34,18 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
     this.time = new Date();
   }
 
+  private addValues() {
+    //console.log('this.lv=' + this.lv);
+    this.valuesX?.push(this.time.getTime());
+    this.valuesY?.push(this.lv);
+    //console.log('this.valuesY?.push(this.lv);' + this.valuesY);
+  }
+
   private update() {
     this.setData();
     this.setPredictor();
     this.predict();
+    this.addValues();
   }
 
   render() {
@@ -44,6 +54,8 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
     console.log('chiamato render di panelctrl, ho come this.lv e this.time questo: ');
     console.log(this.lv);
     console.log(this.time);
+    //console.log('this.valuesX= ' + this.valuesX);
+    //console.log('this.valuesY= ' + this.valuesY);
     const { predictor } = this.props.options;
     return (
       <div>
@@ -51,8 +63,8 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
           type={predictor.type}
           coefficents={predictor.coefficients}
           opt={predictor.opt}
-          lv={this.lv}
-          time={this.time}
+          valuesX={this.valuesX}
+          valuesY={this.valuesY}
           panelopt={options}
           paneldata={data}
           panelwidth={width}

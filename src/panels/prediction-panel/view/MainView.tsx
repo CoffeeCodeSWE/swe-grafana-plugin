@@ -8,8 +8,8 @@ interface Props {
   type: string;
   coefficents: any[];
   opt: any;
-  lv: number;
-  time: Date;
+  valuesX: number[];
+  valuesY: number[];
   panelopt: any;
   paneldata: PanelData;
   panelwidth: number;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export class MainView extends PureComponent<Props> {
-  valuesX!: number[];
+  /*valuesX!: number[];
   valuesY!: number[];
 
   addValueX(v: Date) {
@@ -31,14 +31,14 @@ export class MainView extends PureComponent<Props> {
     console.log('dentro addValueY, v (number) è: ' + v);
     this.valuesY?.push(v);
     console.log('aggiunto un valore all array dei valori (y)');
-  }
+  } */
 
   render() {
     const styles = getStyles();
-    const { type, coefficents, opt, lv, time } = this.props;
-    console.log(type + coefficents + opt + lv + time);
-    this.addValueX(time);
-    this.addValueY(lv);
+    const { type, coefficents, opt, valuesX, valuesY } = this.props;
+    console.log(type + coefficents + opt + valuesX + valuesY);
+    //this.addValueX(time);
+    //this.addValueY(lv);
     return (
       /*<div>
         <Plot
@@ -72,15 +72,15 @@ export class MainView extends PureComponent<Props> {
           className={cx(styles.plot)}
           data={[
             {
-              x: [4, 2, 0],
-              y: [4, 2, 0],
+              x: valuesX,
+              y: valuesY,
               type: 'scatter',
               mode: 'lines',
               marker: { color: 'green' },
             },
             {
-              x: [4, 2, 0],
-              y: [4],
+              x: valuesX,
+              y: valuesY,
               type: 'scatter',
               mode: 'lines',
               marker: { color: 'red' },
