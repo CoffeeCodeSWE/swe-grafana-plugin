@@ -1,7 +1,6 @@
 import { PanelPlugin } from '@grafana/data';
-//import { SimpleOptions } from './types';
-import { EditorView } from './EditorView';
-import { SimplePanel } from './SimplePanel';
+import { EditorView } from './view/EditorView';
+import { PanelCtrl } from './PanelCtrl';
 
-export const plugin = new PanelPlugin(SimplePanel);
+export const plugin = new PanelPlugin(PanelCtrl);
 plugin.setEditor(EditorView);
