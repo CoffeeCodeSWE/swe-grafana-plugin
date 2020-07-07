@@ -1,0 +1,6 @@
+{
+  "type": "RL",
+  "tuples": 69,
+  "coefficients": [3,2,5,7],
+  "svmW": [4,2,0]
+}
