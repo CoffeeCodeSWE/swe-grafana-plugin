@@ -23,10 +23,9 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
   }
 
   private setPredictor() {
-    console.log(
-      'dentro setPredictor di PanelCtrl, setto this.props.options.predictor, che è ' + this.props.options.predictor
-    );
-    this.model.setPredictor(this.props.options.predictor);
+    if (this.props.options.predictor) {
+      this.model.setPredictor(this.props.options.predictor);
+    }
   }
 
   private predict() {
@@ -35,10 +34,8 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
   }
 
   private addValues() {
-    //console.log('this.lv=' + this.lv);
     this.valuesX?.push(this.time.getTime());
     this.valuesY?.push(this.lv);
-    //console.log('this.valuesY?.push(this.lv);' + this.valuesY);
   }
 
   private update() {
@@ -51,11 +48,6 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
   render() {
     const { options, data, width, height } = this.props;
     this.update();
-    console.log('chiamato render di panelctrl, ho come this.lv e this.time questo: ');
-    console.log(this.lv);
-    console.log(this.time);
-    //console.log('this.valuesX= ' + this.valuesX);
-    //console.log('this.valuesY= ' + this.valuesY);
     const { predictor } = this.props.options;
     return (
       <div>

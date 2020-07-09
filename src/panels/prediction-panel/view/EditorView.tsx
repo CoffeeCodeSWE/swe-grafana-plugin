@@ -24,7 +24,6 @@ const setQueriesStyle = {
 };
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
   getUploadedFile = (e: { target: { files: any } }) => {
-    //console.log('chiamato getuploadedfile editorview');
     const reader = new FileReader();
     let files = e.target.files;
     if (!files) {
@@ -34,8 +33,6 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     reader.onload = event => {
       try {
         this.props.options.predictor = Predictor.readJson(event.target?.result);
-        //console.log('questo è quello che ho letto:');
-        //console.log(this.props.options.predictor);
         alert('File selezionato correttamente');
       } catch (a) {
         alert(a);
@@ -72,8 +69,6 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     } else {
       SetQueries = typeof React.PureComponent;
     }
-
-    //console.log('chiamato render() editorview');
 
     return (
       <div>

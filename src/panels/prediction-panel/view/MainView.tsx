@@ -16,49 +16,32 @@ interface Props {
   panelheight: number;
 }
 
+const getStyles = stylesFactory(() => {
+  return {
+    wrapper: css`
+      position: relative;
+      border: 1px solid blue;
+    `,
+    svg: css`
+      position: absolute;
+      top: 0;
+      left: 0;
+    `,
+    plot: css`
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 0px;
+    `,
+  };
+});
+
 export class MainView extends PureComponent<Props> {
-  /*valuesX!: number[];
-  valuesY!: number[];
-
-  addValueX(v: Date) {
-    console.log('dentro addValueX, v (Date) è: ' + v);
-    var d = Date.parse(v.getTime().toLocaleString());
-    this.valuesX?.push(d);
-    console.log('aggiunto un valore all array del tempo (x)');
-  }
-
-  addValueY(v: number) {
-    console.log('dentro addValueY, v (number) è: ' + v);
-    this.valuesY?.push(v);
-    console.log('aggiunto un valore all array dei valori (y)');
-  } */
-
   render() {
     const styles = getStyles();
     const { type, coefficents, opt, valuesX, valuesY } = this.props;
-    console.log(type + coefficents + opt + valuesX + valuesY);
-    //this.addValueX(time);
-    //this.addValueY(lv);
+    console.log(type + coefficents + opt);
     return (
-      /*<div>
-        <Plot
-          data={[
-            {
-              x: [1, 4, 5],
-              y: [6, 3, 9],
-              type: 'scatter',
-              mode: 'lines',
-              marker: { color: 'green' },
-            },
-          ]}
-          layout={{
-            width: 800,
-            height: 100,
-            paper_bgcolor: 'transparent',
-            plot_bgcolor: 'transparent',
-          }}
-        />
-      </div>*/
       <div
         className={cx(
           styles.wrapper,
@@ -100,23 +83,3 @@ export class MainView extends PureComponent<Props> {
     );
   }
 }
-
-const getStyles = stylesFactory(() => {
-  return {
-    wrapper: css`
-      position: relative;
-      border: 1px solid blue;
-    `,
-    svg: css`
-      position: absolute;
-      top: 0;
-      left: 0;
-    `,
-    plot: css`
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 0px;
-    `,
-  };
-});
