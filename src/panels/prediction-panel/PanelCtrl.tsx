@@ -38,10 +38,15 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
     this.valuesY?.push(this.lv);
   }
 
+  private writeInflux() {
+    this.model.writeInflux();
+  }
+
   private update() {
     this.setData();
     this.setPredictor();
     this.predict();
+    this.writeInflux();
     this.addValues();
   }
 

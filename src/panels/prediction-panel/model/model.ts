@@ -31,5 +31,15 @@ export class Model {
     return this.data.outputValues[this.data.outputValues.length - 1][1];
   }
 
-  async writeInflux() {}
+  async writeInflux() {
+    if (!this.data?.outputValues) {
+      throw Error('Dati di output non trovati');
+    }
+    this.data.outputValues.forEach((it: number[]) => {
+      $.post({
+        url: 'http://localhost:8086/write?db=graf',
+        data: 'key value=' + it[0] + ' ' + it[1] + '000000',
+      });
+    });
+  }
 }
