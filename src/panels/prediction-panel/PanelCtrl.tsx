@@ -60,8 +60,8 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
           type={predictor.type}
           coefficents={predictor.coefficients}
           opt={predictor.opt}
-          valuesX={this.valuesX}
-          valuesY={this.valuesY}
+          lv={this.lv}
+          time={this.time.getTime()}
           panelopt={options}
           paneldata={data}
           panelwidth={width}

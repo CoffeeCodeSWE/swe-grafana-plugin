@@ -8,8 +8,8 @@ interface Props {
   type: string;
   coefficents: any[];
   opt: any;
-  valuesX: number[];
-  valuesY: number[];
+  lv: number;
+  time: number;
   panelopt: any;
   paneldata: PanelData;
   panelwidth: number;
@@ -37,10 +37,15 @@ const getStyles = stylesFactory(() => {
 });
 
 export class MainView extends PureComponent<Props> {
+  valuesX: number[] = [];
+  valuesY: number[] = [];
+
   render() {
     const styles = getStyles();
-    const { type, coefficents, opt, valuesX, valuesY } = this.props;
-    console.log(type + coefficents + opt);
+    const { type, coefficents, opt, lv, time } = this.props;
+    this.valuesX.push(time);
+    this.valuesY.push(lv);
+    console.log(type + coefficents + opt + lv);
     return (
       <div
         className={cx(
@@ -55,17 +60,17 @@ export class MainView extends PureComponent<Props> {
           className={cx(styles.plot)}
           data={[
             {
-              x: valuesX,
-              y: valuesY,
+              x: this.valuesX,
+              y: this.valuesY,
               type: 'scatter',
-              mode: 'lines',
+              mode: 'lines+markers',
               marker: { color: 'green' },
             },
             {
-              x: valuesX,
-              y: valuesY,
+              x: this.valuesX,
+              y: this.valuesY,
               type: 'scatter',
-              mode: 'lines',
+              mode: 'lines+markers',
               marker: { color: 'red' },
               showlegend: false,
               hoverinfo: 'none',
