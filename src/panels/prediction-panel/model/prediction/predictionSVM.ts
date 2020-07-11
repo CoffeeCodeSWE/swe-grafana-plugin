@@ -8,15 +8,23 @@ export class PredictionSVM {
       opts = { ...opts, toPredict: 0 };
     }
     const coefficients = predictor.coefficients;
-    const base = 1 - opts.toPredict;
-    const f = (x: number) => {
-      return x ? x * coefficients[0] + coefficients[1] : 0;
+    const first = opts.toPredict;
+    const second = 1 - opts.toPredict;
+    const f = (first: number, second: number) => {
+      return first * coefficients[0] + second * coefficients[1] * coefficients[2];
     };
 
     data.outputValues = [];
     data.inputGrafanaValues.forEach(value => {
-      if (data && value[base]) {
-        data.outputValues?.push([value[2], f(value[base])]);
+      let v = f(value[first], value[second]);
+      let c = 0;
+      if (v > 0) {
+        c = 1;
+      } else if (v < 0) {
+        c = -1;
+      }
+      if (data && (value[0] || value[1])) {
+        data.outputValues?.push([value[2], c]);
       }
     });
     return data.outputValues;
