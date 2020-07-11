@@ -1,3 +1,11 @@
+/*
+ * File: predictionRL.tsx
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contente la classe di predizione con regressione lineare
+ */
+
 import { GrafanaData } from '../../types/Data';
 import { Predictor } from '../../types/Predictor';
 import { Strategy } from '../interfaces/strategy';

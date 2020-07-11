@@ -1,3 +1,11 @@
+/*
+ * File: EditorView.tsx
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: View dell'editor del plug-in
+ */
+
 import React from 'react';
 import { PureComponent } from 'react';
 import { PanelEditorProps } from '@grafana/data';

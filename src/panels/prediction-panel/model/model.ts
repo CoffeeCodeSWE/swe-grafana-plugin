@@ -1,3 +1,11 @@
+/*
+ * File: model.ts
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: Model del plug-in di predizione
+ */
+
 import { GrafanaData } from '../types/Data';
 import { Predictor } from '../types/Predictor';
 import { strategies } from './strategies';

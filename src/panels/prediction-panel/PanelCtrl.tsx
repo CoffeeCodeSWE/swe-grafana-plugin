@@ -1,3 +1,11 @@
+/*
+ * File: PanelCtrl.tsx
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: Controller del panel plug-in
+ */
+
 import React from 'react';
 import { PureComponent } from 'react';
 import { GrafanaData } from './types/Data';
@@ -16,6 +24,27 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
   constructor(props: PanelProps) {
     super(props);
     this.model = new Model();
+  }
+
+  render() {
+    const { options, data, width, height } = this.props;
+    this.update();
+    const { predictor } = this.props.options;
+    return (
+      <div>
+        <MainView
+          type={predictor.type}
+          coefficents={predictor.coefficients}
+          opt={predictor.opt}
+          lv={this.lv}
+          time={this.time.getTime()}
+          panelopt={options}
+          paneldata={data}
+          panelwidth={width}
+          panelheight={height}
+        />
+      </div>
+    );
   }
 
   private setData() {
@@ -48,26 +77,5 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
     this.predict();
     this.writeInflux();
     this.addValues();
-  }
-
-  render() {
-    const { options, data, width, height } = this.props;
-    this.update();
-    const { predictor } = this.props.options;
-    return (
-      <div>
-        <MainView
-          type={predictor.type}
-          coefficents={predictor.coefficients}
-          opt={predictor.opt}
-          lv={this.lv}
-          time={this.time.getTime()}
-          panelopt={options}
-          paneldata={data}
-          panelwidth={width}
-          panelheight={height}
-        />
-      </div>
-    );
   }
 }

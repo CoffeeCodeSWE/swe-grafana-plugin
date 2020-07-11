@@ -1,3 +1,11 @@
+/*
+ * File: Data.ts
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contenente la classe dei dati input e output di Grafana
+ */
+
 import { DataFrame } from '@grafana/data';
 
 export class GrafanaData {

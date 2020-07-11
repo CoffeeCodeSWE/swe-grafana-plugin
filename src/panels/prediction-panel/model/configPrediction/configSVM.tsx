@@ -1,4 +1,11 @@
-//import React from 'react';
+/*
+ * File: configSVM.tsx
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contenente la classe necessaria alla configurazione della predizione con support vector machines
+ */
+
 import React from 'react';
 import { PureComponent, ChangeEvent } from 'react';
 import { Props } from '../../props';

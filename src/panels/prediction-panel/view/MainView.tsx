@@ -1,3 +1,11 @@
+/*
+ * File: MainView.tsx
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: View del pannello del plug-in
+ */
+
 import React from 'react';
 import { PureComponent } from 'react';
 import Plot from 'react-plotly.js';

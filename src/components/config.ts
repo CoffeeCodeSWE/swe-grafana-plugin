@@ -1,3 +1,11 @@
+/*
+ * File: config.ts
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: Pagina di configurazione del plug-in
+ */
+
 export class MainConfig {
   static templateUrl: string;
   enabled: boolean;
@@ -12,7 +20,6 @@ export class MainConfig {
       this.appModel.jsonData = {};
     }
 
-    // Required until we get the types sorted on appModel :(
     const appModel = this.appModel as any;
     if (!appModel.jsonData) {
       appModel.jsonData = {};

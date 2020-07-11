@@ -1,3 +1,11 @@
+/*
+ * File: Predictor.ts
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contenente la classe del predittore, il quale viene letto dalla funzione statica readJson
+ */
+
 export class Predictor {
   type!: string;
   tuples!: number;

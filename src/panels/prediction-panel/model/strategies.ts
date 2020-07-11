@@ -1,3 +1,11 @@
+/*
+ * File: strategies.ts
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contenente gli array associativi necessari all'implementazione del design pattern Strategy
+ */
+
 import { PureComponent } from 'react';
 import { Strategy } from './interfaces/strategy';
 import { PredictionRL } from './prediction/predictionRL';
