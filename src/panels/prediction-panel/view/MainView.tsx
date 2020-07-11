@@ -3,7 +3,7 @@
  * Version:
  * Date: 2020-05-25
  * Author:
- * Description: View del pannello del plug-in
+ * Description: View del pannello del plug-in (w/ plotly)
  */
 
 import React from 'react';
@@ -28,7 +28,7 @@ const getStyles = stylesFactory(() => {
   return {
     wrapper: css`
       position: relative;
-      border: 1px solid blue;
+      border: 0px solid;
     `,
     svg: css`
       position: absolute;
@@ -79,15 +79,23 @@ export class MainView extends PureComponent<Props> {
               y: this.valuesY,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: { color: 'red' },
+              marker: { color: 'green' },
               showlegend: false,
               hoverinfo: 'none',
             },
           ]}
           layout={{
+            title: 'Prediction values',
+            xaxis: {
+              title: 'Time',
+              showgrid: false,
+            },
+            yaxis: {
+              title: 'Values',
+            },
             width: this.props.panelwidth,
             height: this.props.panelheight,
-            autosize: true,
+            autosize: false,
             paper_bgcolor: 'transparent',
             plot_bgcolor: 'transparent',
           }}

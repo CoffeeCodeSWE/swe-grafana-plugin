@@ -36,7 +36,7 @@ export class Model {
     if (!this.data.outputValues || this.data.outputValues.length < 1) {
       throw new Error('data non predetto');
     }
-    return this.data.outputValues[this.data.outputValues.length - 1][1];
+    return Number(this.data.outputValues[this.data.outputValues.length - 1][1].toFixed(3));
   }
 
   async writeInflux() {

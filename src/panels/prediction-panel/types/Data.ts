@@ -17,10 +17,10 @@ export class GrafanaData {
       throw new Error('È necessario impostare almeno 2 query');
     }
 
-    const time = series[0].fields[0].values.toArray();
+    const time = series[0].fields[1].values.toArray();
     const values: number[][] = [];
     series.forEach(it => {
-      values.push(it.fields[1].values.toArray());
+      values.push(it.fields[0].values.toArray());
     });
 
     const temp = [];

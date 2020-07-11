@@ -26,27 +26,6 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
     this.model = new Model();
   }
 
-  render() {
-    const { options, data, width, height } = this.props;
-    this.update();
-    const { predictor } = this.props.options;
-    return (
-      <div>
-        <MainView
-          type={predictor.type}
-          coefficents={predictor.coefficients}
-          opt={predictor.opt}
-          lv={this.lv}
-          time={this.time.getTime()}
-          panelopt={options}
-          paneldata={data}
-          panelwidth={width}
-          panelheight={height}
-        />
-      </div>
-    );
-  }
-
   private setData() {
     this.model.setData(GrafanaData.readValues(this.props.data.series));
   }
@@ -77,5 +56,26 @@ export class PanelCtrl extends PureComponent<PanelProps<Props>> {
     this.predict();
     this.writeInflux();
     this.addValues();
+  }
+
+  render() {
+    const { options, data, width, height } = this.props;
+    this.update();
+    const { predictor } = this.props.options;
+    return (
+      <div>
+        <MainView
+          type={predictor.type}
+          coefficents={predictor.coefficients}
+          opt={predictor.opt}
+          lv={this.lv}
+          time={this.time.getTime()}
+          panelopt={options}
+          paneldata={data}
+          panelwidth={width}
+          panelheight={height}
+        />
+      </div>
+    );
   }
 }
