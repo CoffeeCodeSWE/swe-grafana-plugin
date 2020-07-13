@@ -1,3 +1,11 @@
+/*
+ * File: Predictor.ts
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contenente la classe del predittore, il quale viene letto dalla funzione statica readJson
+ */
+
 export class Predictor {
   type!: string;
   tuples!: number;
@@ -5,7 +13,7 @@ export class Predictor {
   svmW!: number[];
   opt?: any;
 
-  constructor(type: string, tuples: number, coefficients: number[], svmW: number[], opt?: any){
+  constructor(type: string, tuples: number, coefficients: number[], svmW: number[], opt?: any) {
     this.type = type;
     this.tuples = tuples;
     this.coefficients = coefficients;
@@ -13,11 +21,6 @@ export class Predictor {
     this.opt = opt;
   }
 
-  /*
-   * static readJson(string)
-   * @return Predictor
-   * Description: riceve in input il file json e restituisce un oggetto di tipo predittore
-   */
   static readJson(json: any): Predictor {
     if (!json) {
       throw new Error('Seleziona prima il file!');
@@ -35,8 +38,6 @@ export class Predictor {
     ) {
       throw new Error('File mal formato');
     }
-    //console.log('entrato dentro a readJson, l oggetto predictor è questo:');
-    //console.log(pred);
     return pred;
   }
 }

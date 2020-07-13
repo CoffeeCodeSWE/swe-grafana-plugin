@@ -1,32 +1,40 @@
+/*
+ * File: predictionRL.tsx
+ * Version:
+ * Date: 2020-05-25
+ * Author:
+ * Description: File contente la classe di predizione con support vector machines
+ */
+
 import { GrafanaData } from '../../types/Data';
 import { Predictor } from '../../types/Predictor';
 
 export class PredictionSVM {
   //ATTENZIONE: è lo stesso algoritmo della RL, è da fare (questo è qui come placeholder)
   predict(data: GrafanaData, predictor: Predictor, opts: { toPredict: 0 | 1 }) {
-    console.log('dentro predict di predictionRL, il data (grafanadata) che ricevo è questo ' + data);
     if (!opts || !opts.toPredict) {
       opts = { ...opts, toPredict: 0 };
     }
-    console.log('sto predicendo con la RL');
     const coefficients = predictor.coefficients;
-    console.log('coefficients = ' + coefficients);
-    const base = 1 - opts.toPredict;
-    console.log('base= ' + base);
-
-    const f = (x: number) => {
-      return x ? x * coefficients[0] + coefficients[1] : 0;
+    const first = opts.toPredict;
+    const second = 1 - opts.toPredict;
+    const f = (first: number, second: number) => {
+      return first * coefficients[0] + second * coefficients[1] * coefficients[2];
     };
 
     data.outputValues = [];
-    console.log('dentro predict di prediction RL, inpuitGrafanaValues = ' + data.inputGrafanaValues);
     data.inputGrafanaValues.forEach(value => {
-      if (data && value[base]) {
-        data.outputValues?.push([value[2], f(value[base])]);
+      let v = f(value[first], value[second]);
+      let c = 0;
+      if (v > 0) {
+        c = 1;
+      } else if (v < 0) {
+        c = -1;
+      }
+      if (data && (value[0] || value[1])) {
+        data.outputValues?.push([value[2], c]);
       }
     });
-    console.log('ho predetto con la RL, questo è quello che ho in data.outputValues');
-    console.log(data.outputValues);
     return data.outputValues;
   }
 }
