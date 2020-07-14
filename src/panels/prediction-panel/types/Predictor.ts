@@ -28,14 +28,27 @@ export class Predictor {
 
     let str: string;
     str = json.toString();
-    let pred: Predictor = JSON.parse(str);
-
-    if (
-      (pred.type !== 'RL' && pred.type !== 'SVM') ||
-      !pred.coefficients ||
-      pred.tuples < 1 ||
-      (pred.type === 'SVM' && !pred.svmW)
-    ) {
+    let temp = JSON.parse(str);
+    console.log(temp);
+    let pred = new Predictor('', 0, [], [], []);
+    pred.type = temp.type;
+    if (pred.type === 'rl') {
+      //RL
+      let coeffKey = Object.keys(temp.predictor.coefficents)[0];
+      pred.coefficients.push(temp.predictor.coefficents[coeffKey]); //undefined
+      pred.coefficients.push(temp.predictor.intercept);
+      pred.tuples = temp.predictor.tuples;
+    } else if (pred.type === 'svm') {
+      pred.coefficients.push(temp.predictor.b); //no, quello dopo alpha
+      pred.coefficients.push(temp.predictor.w[0]);
+      pred.coefficients.push(temp.predictor.w[1]);
+      pred.tuples = temp.predictor.N;
+    } else {
+      console.log('non capisce type');
+      throw new Error('File mal formato');
+    }
+    console.log(pred);
+    if ((pred.type !== 'rl' && pred.type !== 'svm') || !pred.coefficients || pred.tuples < 1) {
       throw new Error('File mal formato');
     }
     return pred;
