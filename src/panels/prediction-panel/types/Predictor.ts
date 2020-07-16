@@ -41,7 +41,7 @@ export class Predictor {
       pred.coefficients.push(temp.predictor.w[1]);
       pred.tuples = temp.predictor.N;
     }
-    
+
     if ((pred.type !== 'rl' && pred.type !== 'svm') || !pred.coefficients || pred.tuples < 1) {
       throw new Error('File mal formato');
     }

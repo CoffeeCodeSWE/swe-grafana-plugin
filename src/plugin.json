@@ -19,15 +19,16 @@
 
   "includes": [
     {
-      "type": "dashboard",
-      "name": "Dashboard Example - CoffeeCode",
-      "path": "./dashboards/dashboard-example.json",
-      "addToNav" : true
-    },
+      "type": "page",
+      "name": "Import",
+      "path": "/plugins/coffeecode-predire-in-grafana/?page=import",
+      "role": "Editor",
+      "addToNav": true,
+      "defaultNav": true
+  },
     {
       "type": "coffee-code-prediction-panel",
       "name": "Coffee Code panel"
-
     }
   ],
 
