@@ -41,13 +41,13 @@ let testData: DataFrame[] = [
 
 //Test Predictor class
 test('predictor RL well formed', () => {
-  let predictor = new Predictor('RL', 69, [3, 2, 5, 7], [4, 2, 0], undefined);
-  const json = Predictor.readJson('{"type": "RL","tuples": 69,"coefficients": [3,2,5,7],"svmW": [4,2,0]}');
+  let predictor = new Predictor('rl', 25, [0.350323388550426, -0.7840651228251652], [4, 2, 0], undefined);
+  const json = Predictor.readJson(
+    '{"type":"rl","predictor":{"tuples":25,"coefficents":{"blandChromatin":0.350323388550426,"clumpThickness":0.40038369156958814,"marginalAdhesion":0.26857541776429206,"mitoses":-0.16765270057008674},"intercept":-0.7840651228251652,"target":"uniformityOfCellSize"},"notes":""}'
+  );
   expect(predictor.type).toBe(json.type);
   expect(predictor.tuples).toBe(json.tuples);
   expect(predictor.coefficients).toStrictEqual(json.coefficients);
-  expect(predictor.svmW).toStrictEqual(json.svmW);
-  expect(predictor.opt).toBe(json.opt);
 });
 
 test('predictor RL not well formed', () => {
@@ -65,7 +65,7 @@ test('predictor empty', () => {
 //Test Data class
 test('inputGrafanaValues', () => {
   const data = GrafanaData.readValues(testData);
-  expect(data.inputGrafanaValues[0]).toStrictEqual([6, 7, 123]);
-  expect(data.inputGrafanaValues[1]).toStrictEqual([6, 3, 321]);
-  expect(data.inputGrafanaValues[2]).toStrictEqual([2, 0, 456]);
+  expect(data.inputGrafanaValues[0]).toStrictEqual([123, 123, 6]);
+  expect(data.inputGrafanaValues[1]).toStrictEqual([321, 321, 6]);
+  expect(data.inputGrafanaValues[2]).toStrictEqual([456, 456, 2]);
 });

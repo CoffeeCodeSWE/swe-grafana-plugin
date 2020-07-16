@@ -2,16 +2,18 @@
   "type": "panel",
   "name": "Coffee Code Panel",
   "id": "coffee-code-prediction-panel",
+  "dataFormats": ["time_series"],
+  "refresh": "10s",
   "info": {
-    "description": "Panel plug-in di predizione del gruppo CoffeeCode",
+    "description": "Plugin di predizione di CoffeeCode",
     "author": {
-      "name": "Coffee Code",
+      "name": "CoffeeCode",
       "url": "www.coffeecode.eu"
     },
     "keywords": [],
     "logos": {
-      "small": "img/logo.png",
-      "large": "img/logo.png"
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
     },
     "screenshots": [],
     "version": "%VERSION%",
