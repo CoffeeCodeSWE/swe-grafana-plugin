@@ -9,7 +9,6 @@ import { GrafanaData } from '../../types/Data';
 import { Predictor } from '../../types/Predictor';
 
 export class PredictionSVM {
-  //ATTENZIONE: è lo stesso algoritmo della RL, è da fare (questo è qui come placeholder)
   predict(data: GrafanaData, predictor: Predictor, opts: { toPredict: 0 | 1 }) {
     if (!opts || !opts.toPredict) {
       opts = { ...opts, toPredict: 0 };
