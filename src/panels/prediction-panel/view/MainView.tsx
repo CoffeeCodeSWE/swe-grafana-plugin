@@ -1,8 +1,7 @@
 /*
  * File: MainView.tsx
- * Version:
+ * Version: v3.11-1.0.0
  * Date: 2020-05-25
- * Author:
  * Description: View del pannello del plug-in (w/ plotly)
  */
 

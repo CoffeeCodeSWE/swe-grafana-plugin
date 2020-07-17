@@ -1,8 +1,7 @@
 /*
  * File: strategy.ts
- * Version:
+ * Version: v3.11-1.0.0
  * Date: 2020-05-25
- * Author:
  * Description: File contenente l'interfaccia Strategy, la quale viene implementata dal model per l'utilizzo del corretto algoritmo di predizione
  */
 

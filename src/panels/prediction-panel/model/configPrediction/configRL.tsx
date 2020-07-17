@@ -1,8 +1,7 @@
 /*
  * File: configRL.tsx
- * Version:
+ * Version: v3.11-1.0.0
  * Date: 2020-05-25
- * Author:
  * Description: File contenente la classe necessaria alla configurazione della predizione con regressione lineare
  */
 

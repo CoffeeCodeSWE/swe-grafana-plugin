@@ -1,8 +1,7 @@
 /*
  * File: strategies.ts
- * Version:
+ * Version: v3.11-1.0.0
  * Date: 2020-05-25
- * Author:
  * Description: File contenente gli array associativi necessari all'implementazione del design pattern Strategy
  */
 
