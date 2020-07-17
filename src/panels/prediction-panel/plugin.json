@@ -1,0 +1,17 @@
+{
+  "type": "panel",
+  "name": "Coffee Code Panel",
+  "id": "coffee-code-prediction-panel",
+  "dataFormats": ["time_series"],
+  "refresh": "10s",
+  "info": {
+    "description": "Plugin di predizione di CoffeeCode",
+    "author": {
+      "name": "CoffeeCode",
+      "url": "www.coffeecode.eu"
+    }
+  },
+  "dependencies": {
+    "grafanaVersion": "6.3.x"
+  }
+}

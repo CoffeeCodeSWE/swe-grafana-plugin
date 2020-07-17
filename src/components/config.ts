@@ -1,27 +1,30 @@
-import { PluginMeta } from '@grafana/data';
+/*
+ * File: config.ts
+ * Version: v3.11-1.0.0
+ * Date: 2020-05-25
+ * Description: Pagina di configurazione del plug-in
+ */
 
-export class ExampleConfigCtrl {
-  static templateUrl = 'legacy/config.html';
-
+export class MainConfig {
+  static templateUrl: string;
+  enabled: boolean;
   appEditCtrl: any;
-  appModel?: PluginMeta;
+  appModel: any;
 
   /** @ngInject */
   constructor($scope: any, $injector: any) {
     this.appEditCtrl.setPostUpdateHook(this.postUpdate.bind(this));
-
-    // Make sure it has a JSON Data spot
-    if (!this.appModel) {
-      this.appModel = {} as PluginMeta;
+    this.enabled = false;
+    if (!this.appModel.jsonData) {
+      this.appModel.jsonData = {};
     }
 
-    // Required until we get the types sorted on appModel :(
     const appModel = this.appModel as any;
     if (!appModel.jsonData) {
       appModel.jsonData = {};
     }
 
-    console.log('ExampleConfigCtrl', this);
+    console.log(this);
   }
 
   postUpdate() {
@@ -30,7 +33,9 @@ export class ExampleConfigCtrl {
       return;
     }
 
-    // TODO, can do stuff after update
+    this.enabled = true;
     console.log('Post Update:', this);
   }
 }
+
+MainConfig.templateUrl = 'components/config.html';
